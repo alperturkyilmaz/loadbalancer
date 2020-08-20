@@ -33,6 +33,7 @@ REMARK! Unit tests include multithreaded testcases. If you enable tests, it may 
 LoadBalancer loadBalancer = new LoadBalancer.Builder()
                                   .withInvocationPolicy(new RoundRobinInvocationPolicy())
                                   .withHeartbeatPolicy(new ImprovedHeartbeatPolicy())
+				  .withClusterCapacity(4) 
                                   .build();
 //with no Provider   
 List<Provider> providerList = new ArrayList<>();
