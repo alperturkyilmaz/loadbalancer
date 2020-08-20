@@ -27,7 +27,7 @@ mvn clean package -DskipTests
 REMARK! Unit tests include multithreaded testcases. If you enable tests, it may take a bit more time in packaging the application.
 
 ## Sample Usage
-```bash
+```java
 ...
 //instantiate the load balancer
 LoadBalancer loadBalancer = new LoadBalancer.Builder()
