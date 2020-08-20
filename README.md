@@ -40,7 +40,7 @@ LoadBalancer loadBalancer = new LoadBalancer.Builder()
 List<Provider> providerList = new ArrayList<>();
 loadBalancer.register(providerList);
 
-//Make request to the loadbalancer
+//Make request to the loadbalancer,since there is no provider to process the request, a null respose will be returned.
 String response = loadBalancer.get();
 ...
 
