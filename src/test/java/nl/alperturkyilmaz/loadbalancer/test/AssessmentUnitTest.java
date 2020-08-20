@@ -23,7 +23,7 @@ import nl.alperturkyilmaz.loadbalancer.test.MockProvider.ProviderStatus;
 
 public class AssessmentUnitTest {
 
-	Builder builder;
+	Builder builder = null;
 
 	public static abstract class Task implements Runnable {
 		int index = 0;
@@ -63,7 +63,9 @@ public class AssessmentUnitTest {
 	public void testRandomLoadBalancerWithOneProvider() {
 		List<Provider> providers = generateProviders(1);
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RandomInvocationPolicy()).withProviders(providers).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RandomInvocationPolicy())
+											.withProviders(providers)
+											.build();
 
 		String response1 = loadBalancer.get();
 		String response2 = loadBalancer.get();
@@ -76,7 +78,9 @@ public class AssessmentUnitTest {
 
 		List<Provider> providers = generateProviders(10);
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withProviders(providers).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+											.withProviders(providers)
+											.build();
 
 		int maximumNumberOfRequest = loadBalancer.getMaximumRegisteredProviders() + new Random().nextInt(loadBalancer.getMaximumRegisteredProviders());
 
@@ -94,7 +98,9 @@ public class AssessmentUnitTest {
 	public void testRoundRobinLoadBalancerWithOneProvider() {
 		List<Provider> providers = generateProviders(1);
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withProviders(providers).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+											.withProviders(providers)
+											.build();
 
 		String response1 = loadBalancer.get();
 		String response2 = loadBalancer.get();
@@ -106,7 +112,9 @@ public class AssessmentUnitTest {
 	public void testRandomLoadBalancerWithNoProvider() {
 		List<Provider> providers = generateProviders(0);
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RandomInvocationPolicy()).withProviders(providers).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RandomInvocationPolicy())
+											.withProviders(providers)
+											.build();
 
 		String response1 = loadBalancer.get();
 		assertEquals(null, response1);
@@ -117,7 +125,9 @@ public class AssessmentUnitTest {
 	public void testRoundRobinLoadBalancerWithNoProvider() {
 		List<Provider> providers = generateProviders(0);
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withProviders(providers).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+											.withProviders(providers)
+											.build();
 
 		String response1 = loadBalancer.get();
 		assertEquals(null, response1);
@@ -132,7 +142,10 @@ public class AssessmentUnitTest {
 			providers.add(new MockProvider(ProviderStatus.RANDOM_BEHAVIOR, false));
 		}
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withProviders(providers).withHeartbeatPolicy(new DefaultHeartbeatPolicy()).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+											.withProviders(providers)
+											.withHeartbeatPolicy(new DefaultHeartbeatPolicy())
+											.build();
 		try {
 			Object lock = new Object();
 			synchronized (lock) {
@@ -152,7 +165,10 @@ public class AssessmentUnitTest {
 			providers.add(new MockProvider(ProviderStatus.NOT_WORKING, false));
 		}
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withProviders(providers).withHeartbeatPolicy(new DefaultHeartbeatPolicy()).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+											.withProviders(providers)
+											.withHeartbeatPolicy(new DefaultHeartbeatPolicy())
+											.build();
 		try {
 			Object lock = new Object();
 			synchronized (lock) {
@@ -176,7 +192,10 @@ public class AssessmentUnitTest {
 			providers.add(new MockProvider(ProviderStatus.RANDOM_BEHAVIOR, false));
 		}
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withProviders(providers).withHeartbeatPolicy(new ImprovedHeartbeatPolicy()).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+											.withProviders(providers)
+											.withHeartbeatPolicy(new ImprovedHeartbeatPolicy())
+											.build();
 		try {
 			Object lock = new Object();
 			synchronized (lock) {
@@ -193,7 +212,9 @@ public class AssessmentUnitTest {
 	public void testExcludeAllIncludeAllProviders() {
 		List<Provider> providers = generateRandomSizeNonEmptyProviderList();
 
-		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withProviders(providers).build();
+		LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+											.withProviders(providers)
+											.build();
 
 		for (Provider provider : providers) {
 			assertTrue("Failed to exclude provider", loadBalancer.exclude(provider));
@@ -229,7 +250,11 @@ public class AssessmentUnitTest {
 			providers.add(mockProvider);
 		}
 
-		final LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy()).withClusterCapacity(requestPerProvider).withProviders(providers).withHeartbeatPolicy(new ImprovedHeartbeatPolicy()).build();
+		final LoadBalancer loadBalancer = builder.withInvocationPolicy(new RoundRobinInvocationPolicy())
+													.withClusterCapacity(requestPerProvider)
+													.withProviders(providers)
+													.withHeartbeatPolicy(new ImprovedHeartbeatPolicy())
+													.build();
 
 		int requestSize = 50;
 		final int capacity = providerSize * requestPerProvider;
