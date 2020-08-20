@@ -8,7 +8,7 @@ A Load Balancer for distributing incoming requests to a list of registered provi
 
 **Heartbeat Policies:**
 * _DefaultHeartbeatPolicy:_ Unhealthy Providers are removed from the list.
-* _ImprovedHeartbeatPolicy:_ Unhealthy Providers removed from the list, after receiving  N successful heartbeat, Provider is being added to list.
+* _ImprovedHeartbeatPolicy:_ Unhealthy Providers are removed from the list, after receiving  N successful heartbeat, Provider is being added to list.
 
 
 
