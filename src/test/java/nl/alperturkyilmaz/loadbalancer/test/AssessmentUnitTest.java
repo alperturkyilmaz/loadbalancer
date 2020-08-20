@@ -10,7 +10,6 @@ import java.util.Random;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import nl.alperturkyilmaz.loadbalancer.LoadBalancer;
