@@ -29,7 +29,7 @@ REMARK! Unit tests include multithreaded testcases. If you enable tests, it may 
 ## Sample Usage
 ```bash
 ...
-//instantiate loadbalancer
+//instantiate the load balancer
 LoadBalancer loadBalancer = new LoadBalancer.Builder()
                                   .withInvocationPolicy(new RoundRobinInvocationPolicy())
                                   .withHeartbeatPolicy(new ImprovedHeartbeatPolicy())
