@@ -1,6 +1,7 @@
 # Load Balancer (LB)
 
 A Load Balancer for distributing incoming requests to a list of registered providers.
+Load Balancer can be configured with the following policies:
 
 **Invocation Policies:**
 * _RandomInvocationPolicy:_ The Provider that is going to process the message is being selected randomly.
